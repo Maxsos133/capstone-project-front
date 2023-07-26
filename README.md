@@ -10,6 +10,8 @@ This website allows users to order custom clothes, dresses and other hand made t
 
 - Size comparison
 
+- chat with the owner about your order
+
 # Technologies
 
 - HTML
