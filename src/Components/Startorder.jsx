@@ -99,7 +99,7 @@ export default function Startorder() {
           </div>
           {size === 'custom' && (
             <div>
-              <label>Bust:</label>
+              <label>Bust cm:</label>
               <input
                 type="text"
                 value={customSizeValues.bust}
@@ -108,7 +108,7 @@ export default function Startorder() {
                 }
                 required
               />
-              <label>Waist:</label>
+              <label>Waist cm:</label>
               <input
                 type="text"
                 value={customSizeValues.waist}
@@ -117,7 +117,7 @@ export default function Startorder() {
                 }
                 required
               />
-              <label>Hips:</label>
+              <label>Hips cm:</label>
               <input
                 type="text"
                 value={customSizeValues.hips}
@@ -126,7 +126,7 @@ export default function Startorder() {
                 }
                 required
               />
-              <label>Hollow to Floor:</label>
+              <label>Hollow to Floor cm:</label>
               <input
                 type="text"
                 value={customSizeValues.hollowToFloor}
@@ -135,7 +135,7 @@ export default function Startorder() {
                 }
                 required
               />
-              <label>Height:</label>
+              <label>Height cm:</label>
               <input
                 type="text"
                 value={customSizeValues.height}

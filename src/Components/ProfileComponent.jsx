@@ -35,13 +35,13 @@ export default function ProfileComponent(props) {
               <ul>
                 {Object.entries(order.customSize[0]).map(([key, value]) => (
                   <li key={key}>
-                    {key}: {value}
+                    {key}: {value}cm
                   </li>
                 ))}
               </ul>
             </div>
           )}
-              Description: {order.description}, 
+              Description: {order.description}
 
             </div>
           ))}
