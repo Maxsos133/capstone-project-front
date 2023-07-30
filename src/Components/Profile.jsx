@@ -14,22 +14,18 @@ export default function LoginPage() {
   const [profileData, setProfileData] = useState(null)
 
   useEffect(() => {
-    // Check if the user is logged in (e.g., by checking a token in local storage)
     const isLoggedIn = localStorage.getItem('isLoggedIn')
     setIsLoggedIn(!!isLoggedIn)
 
-    // Fetch user profile data if logged in
     if (isLoggedIn) {
       fetchProfileData()
     }
-  }, [isLoggedIn]) // Add isLoggedIn to the dependency array
+  }, [isLoggedIn])
 
   const fetchProfileData = async () => {
     try {
-      // Get the email from local storage
       const userEmail = localStorage.getItem('userEmail')
 
-      // Make an API request to fetch the user's profile data
       const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/users/${userEmail}`)
       setProfileData(response.data)
     } catch (error) {
@@ -43,7 +39,6 @@ export default function LoginPage() {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, { email, password })
       setMessage(`Logged in successfully as ${response.data.email}`)
       setIsLoggedIn(true)
-      // Store login state and user email in local storage
       localStorage.setItem('isLoggedIn', true)
       localStorage.setItem('userEmail', response.data.email)
     } catch (error) {
@@ -75,19 +70,17 @@ export default function LoginPage() {
   }
   const handleLogout = () => {
     setIsLoggedIn(false)
-    // Remove login state from local storage or handle logout using your authentication method
     localStorage.removeItem('isLoggedIn')
     localStorage.setItem('userEmail',)
   }
 
   return (
     <>
-      <h1>{isLoggedIn ? 'Logged In' : isSignUp ? 'Sign Up' : 'Login'}</h1>
+      <h1 className='loginTitle'>{isLoggedIn ? '' : isSignUp ? 'Sign Up' : 'Login'}</h1>
       {message && <p>{message}</p>}
       {isLoggedIn ? (
         <>
           {profileData ? (
-            // Check if the user is an admin and render AdminPanel accordingly
             profileData.isAdmin ? (
               <AdminPanel profile={profileData} />
             ) : (
@@ -96,10 +89,10 @@ export default function LoginPage() {
           ) : (
             <p>Loading profile data...</p>
           )}
-          <button onClick={handleLogout}>Logout</button>
+          <button className="logoutBtn" onClick={handleLogout}>Logout</button>
         </>
       ) : (
-        <form>
+        <form className='loginForm'>
           {isSignUp && (
             <div>
               <label>Nickname:</label>
@@ -124,18 +117,18 @@ export default function LoginPage() {
               />
             </div>
           )}
-          <button onClick={isSignUp ? handleSignUp : handleLogin}>
+          <button className="loginBtn" onClick={isSignUp ? handleSignUp : handleLogin}>
             {isSignUp ? 'Sign Up' : 'Login'}
           </button>
         </form>
       )}
       {!isLoggedIn && (
-        <p>
+        <div className='issignupmsg'>
           {isSignUp ? 'Already have an account?' : "Don't have an account?"}
-          <button onClick={() => setIsSignUp((prev) => !prev)}>
+          <button className="signUpBtn" onClick={() => setIsSignUp((prev) => !prev)}>
             {isSignUp ? 'Login' : 'Sign Up'}
           </button>
-        </p>
+        </div>
       )}
     </>
   )

@@ -1,7 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=REM:wght@100&display=swap');
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  font-family: 'REM', sans-serif;
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+
+.logoTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 20px;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ff8c00;
+}
+
+nav a:nth-child(4) {
+  background-color: #ff8c00;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 300px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+}
+
+.loginTitle {
   text-align: center;
 }
 
+
+.loginForm div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.loginForm label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.loginForm input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+
+.loginBtn, .logoutBtn, .signUpBtn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.loginBtn {
+  background-color: #007bff;
+}
+
+.logoutBtn {
+  top: 10px;
+  background-color: #dc3545;
+}
+
+.signUpBtn {
+  background-color: #28a745;
+}
+
+
+.issignupmsg {
+  text-align: center;
+  margin: 10px 0;
+  color: #007bff;
+  font-weight: bold;
+}
+
+p button {
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.startOrderForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 400px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+}
+
+.startOrderTitle {
+  text-align: center;
+}
+
+.startOrderForm div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.startOrderForm label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.startOrderForm select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.startOrderForm input[type="text"],
+.startOrderForm textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.startOrderForm select {
+  height: 30px;
+}
+
+.startOrderForm textarea {
+  resize: vertical;
+}
+
+.submitOrderBtn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+}
+.adminPanel {
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.adminPanelTitle {
+  text-align: center;
+}
+
+.toggleCompletedBtn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.orderData {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.orderData select {
+  width: 150px;
+  margin-bottom: 5px;
+}
+
+.orderData p {
+  margin: 5px 0;
+}
+
+.orderData div {
+  margin-top: 5px;
+}
+
+.orderData ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.orderData li {
+  margin-bottom: 5px;
+}
+
+.UserProfile {
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.UserProfile > div:first-child {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.UserProfile h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.UserProfile > div > div > div {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.UserProfile p {
+  margin: 5px 0;
+}
+
+.UserProfile div > div > div div {
+  margin-top: 5px;
+}
+
+.UserProfile ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.UserProfile li {
+  margin-bottom: 5px;
+}
+
+.dresses-container {
+  padding: 20px;
+}
+
+.dresses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.dress-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.dress-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.dress-item h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.dress-item p {
+  margin: 5px 0;
+}
+
+.dress-item p:last-child {
+  font-weight: bold;
+}
+
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.homeTitle {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.homeImg {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.manageDress {
+  padding: 20px;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+.CreateDressForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.CreateDressForm label {
+  font-weight: bold;
+}
+
+.CreateDressForm input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.CreateDressForm input[type="number"] {
+  width: 5%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.createDressBtn {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .CreateDressForm input[type="text"],
+  .CreateDressForm input[type="number"] {
+    width: 100%;
+  }
+}

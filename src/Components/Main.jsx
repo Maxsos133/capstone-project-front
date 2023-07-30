@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import Home from './Home'
 import Profile from './Profile'
-import Media from './Media'
+import Dresses from './Dresses'
 import Startorder from './Startorder'
 
 export default function Main() {
@@ -12,7 +12,7 @@ export default function Main() {
       
         <Route exact path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/media" element={<Media />} />
+        <Route path="/dresses" element={<Dresses />} />
         <Route path="/startorder" element={<Startorder />} />
       
       
