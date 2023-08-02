@@ -17,6 +17,11 @@ export default function Startorder() {
     hollowToFloor: '',
     height: '',
   });
+  const [amount, setAmount] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expMonth, setExpMonth] = useState('');
+  const [expYear, setExpYear] = useState('');
+  const [cvc, setCvc] = useState('');
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -33,41 +38,77 @@ export default function Startorder() {
     }
   };
 
+  const checkout = () => {
+    const buyerEmail = localStorage.getItem('userEmail');
+    fetch(`${import.meta.env.VITE_BASE_URL}/create-checkout-session`, {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      mode:"cors",
+      body: JSON.stringify({
+        buyerEmail,
+          dress,
+          size: customSize ? 'custom' : size,
+          color,
+          description,
+          
+        items: [
+          {id:1, quantity: 1, price: 1, name: dress}
+        ]
+      })
+    })
+    .then(res => {
+      if (res.ok) return res.json()
+      return res.json().then(json => Promise.reject(json))
+    })
+    .then(({url})=>{
+      window.location = url
+    })
+    .catch(e => {
+      console.log(e.error)
+    })
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const buyerEmail = localStorage.getItem('userEmail');
   
-      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/orders/create`, {
-        buyerEmail,
-        dress,
-        size: customSize ? 'custom' : size,
-        color,
-        description,
-        customSizeValues,
-      });
+    await checkout()
+      
+        const buyerEmail = localStorage.getItem('userEmail');
   
-      setMessage('Order created successfully.');
-      setDress('');
-      setSize('');
-      setColor('');
-      setDescription('');
-      setCustomSize(false);
-      setCustomSizeValues({
-        bust: '',
-        waist: '',
-        hips: '',
-        hollowToFloor: '',
-        height: '',
-      });
-    } catch (error) {
-      setMessage('Failed to create the order.');
-    }
+        const responseOrder = await axios.post(`${import.meta.env.VITE_BASE_URL}/orders/create`, {
+          buyerEmail,
+          dress,
+          size: customSize ? 'custom' : size,
+          color,
+          description,
+          customSizeValues,
+        });
+  
+        // Handle the order response
+        setMessage('Order created successfully.');
+        setDress('');
+        setSize('');
+        setColor('');
+        setDescription('');
+        setCustomSize(false);
+        setCustomSizeValues({
+          bust: '',
+          waist: '',
+          hips: '',
+          hollowToFloor: '',
+          height: '',
+        });
+      
+    
   };
+  
 
   return (
     <div>
       <h2 className='startOrderTitle'>Start Order</h2>
+      {/* <button onClick={checkout}>CHECKOUT</button> */}
       {message && <p>{message}</p>}
       {isLoggedIn ? (
         <form className='startOrderForm' onSubmit={handleSubmit}>
@@ -154,7 +195,13 @@ export default function Startorder() {
             <label>Description:</label>
             <textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
           </div>
-          <button className='submitOrderBtn' type="submit">Submit Order</button>
+      {/* <input type="text" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Amount" />
+      <input type="text" value={cardNumber} onChange={(e) => setCardNumber(e.target.value)} placeholder="Card Number" />
+      <input type="text" value={expMonth} onChange={(e) => setExpMonth(e.target.value)} placeholder="Expiration Month" />
+      <input type="text" value={expYear} onChange={(e) => setExpYear(e.target.value)} placeholder="Expiration Year" />
+      <input type="text" value={cvc} onChange={(e) => setCvc(e.target.value)} placeholder="CVC" /> */}
+          <button className='submitOrderBtn' type="submit">Pay Now</button>
+          
         </form>
       ) : (
         <h2>Please log in to start an order.</h2>
