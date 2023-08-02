@@ -168,6 +168,7 @@ p button {
   cursor: pointer;
   background-color: #007bff;
   color: #fff;
+  text-align: center;
 }
 .adminPanel {
   padding: 20px;

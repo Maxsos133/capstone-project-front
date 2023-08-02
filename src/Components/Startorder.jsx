@@ -70,48 +70,16 @@ export default function Startorder() {
     })
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
   
-    await checkout()
-      
-        const buyerEmail = localStorage.getItem('userEmail');
-  
-        const responseOrder = await axios.post(`${import.meta.env.VITE_BASE_URL}/orders/create`, {
-          buyerEmail,
-          dress,
-          size: customSize ? 'custom' : size,
-          color,
-          description,
-          customSizeValues,
-        });
-  
-        // Handle the order response
-        setMessage('Order created successfully.');
-        setDress('');
-        setSize('');
-        setColor('');
-        setDescription('');
-        setCustomSize(false);
-        setCustomSizeValues({
-          bust: '',
-          waist: '',
-          hips: '',
-          hollowToFloor: '',
-          height: '',
-        });
-      
-    
-  };
   
 
   return (
     <div>
       <h2 className='startOrderTitle'>Start Order</h2>
-      {/* <button onClick={checkout}>CHECKOUT</button> */}
       {message && <p>{message}</p>}
       {isLoggedIn ? (
-        <form className='startOrderForm' onSubmit={handleSubmit}>
+        <div>
+        <form className='startOrderForm' onSubmit={checkout}>
           <div>
             <label>Dress:</label>
             <select value={dress} onChange={(e) => setDress(e.target.value)} required>
@@ -200,9 +168,10 @@ export default function Startorder() {
       <input type="text" value={expMonth} onChange={(e) => setExpMonth(e.target.value)} placeholder="Expiration Month" />
       <input type="text" value={expYear} onChange={(e) => setExpYear(e.target.value)} placeholder="Expiration Year" />
       <input type="text" value={cvc} onChange={(e) => setCvc(e.target.value)} placeholder="CVC" /> */}
-          <button className='submitOrderBtn' type="submit">Pay Now</button>
           
         </form>
+        <button className='submitOrderBtn' onClick={checkout}>Pay Now</button>
+        </div>
       ) : (
         <h2>Please log in to start an order.</h2>
       )}
